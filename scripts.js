@@ -1,7 +1,5 @@
 // scripts.js
 
-
-
 function getCompChoice() {
   // gets random number between 0 and 1, multiplies it by 3 and rounds it down to get number
   let num = Math.floor(Math.random() * 3);
@@ -42,46 +40,37 @@ function playRound() {
   let humanChoice = getHumanChoice();
   let compChoice = getCompChoice();
   
-  console.log(compChoice);
-  
   // for each human choice, the code decides whether comp or human wins based on compChoice
   // draw is also an option if the choices are the same
   if (humanChoice === "rock") {
     
     if (compChoice === "rock") {
-      return "Draw";
+      return "draw";
     } else if (compChoice === "paper") {
-      compScore += 1;
-      return "Computer Wins";
+      return "comp";
     } else if (compChoice === "scissors") {
-      humanScore += 1;
-      return "Human Wins";
+      return "human";
     }
     
   } else if (humanChoice === "paper") {
     
     if (compChoice === "rock") {
-      humanScore += 1;
-      return "Human Wins";
+      return "human";
     } else if (compChoice === "paper") {
-      return "Draw";
+      return "draw";
     } else if (compChoice === "scissors") {
-      compScore += 1;
-      return "Computer Wins";
+      return "comp";
     }
     
   } else if (humanChoice === "scissors") {
     
     if (compChoice === "rock") {
-      compScore += 1;
-      return "Computer Wins";
+      return "comp";
     } else if (compChoice === "paper") {
-      humanScore += 1;
-      return "Human Wins";
+      return "human";
     } else if (compChoice === "scissors") {
-      return "Draw";
+      return "draw";
     }
-    
   }
 }
 
@@ -92,12 +81,22 @@ function playGame() {
 
   // for loop, 5 times
   for (let i = 0; i < 5; i++) {
-    console.log(playRound());
+    let winner = playRound();
+
+    if (winner === "draw") {
+      console.log("Draw");
+    } else if (winner === "human") {
+      console.log("Human wins this round");
+      humanScore += 1;
+    } else if (winner === "comp") {
+      console.log("Computer wins this round");
+      compScore += 1;
+    }
   }
 
   // logs scores
-  console.log("Human: ${humanScore}");
-  console.log("Computer: ${compScore}");
+  console.log('Human: ' + humanScore);
+  console.log('Computer: ' + compScore);
 
   // checks who has higher score, logs winner.
   if (humanScore > compScore) {
