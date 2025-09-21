@@ -1,8 +1,5 @@
 // scripts.js
 
-// Scores
-var humanScore = 0;
-var compScore = 0;
 
 
 function getCompChoice() {
@@ -18,13 +15,13 @@ function getCompChoice() {
   } else if (num == 2) {
     return "scissors";
   }
-
+  
 }
 
 function getHumanChoice() {
   // gets users input through browser
   let choice = prompt("Rock, Paper or Scissors?");
-
+  
   // returns the choice in lowercase form
   if (choice.toLowerCase() === "rock") {
     //console.log("Got");
@@ -44,7 +41,9 @@ function playRound() {
   // get individual choices of rock, paper or scissors
   let humanChoice = getHumanChoice();
   let compChoice = getCompChoice();
-
+  
+  console.log(compChoice);
+  
   // for each human choice, the code decides whether comp or human wins based on compChoice
   // draw is also an option if the choices are the same
   if (humanChoice === "rock") {
@@ -58,9 +57,9 @@ function playRound() {
       humanScore += 1;
       return "Human Wins";
     }
-  
+    
   } else if (humanChoice === "paper") {
-
+    
     if (compChoice === "rock") {
       humanScore += 1;
       return "Human Wins";
@@ -70,9 +69,9 @@ function playRound() {
       compScore += 1;
       return "Computer Wins";
     }
-
+    
   } else if (humanChoice === "scissors") {
-
+    
     if (compChoice === "rock") {
       compScore += 1;
       return "Computer Wins";
@@ -82,8 +81,30 @@ function playRound() {
     } else if (compChoice === "scissors") {
       return "Draw";
     }
-
+    
   }
 }
 
-console.log(playRound())
+function playGame() {
+  // set scores to 0 when func is called
+  var humanScore = 0;
+  var compScore = 0;
+
+  // for loop, 5 times
+  for (let i = 0; i < 5; i++) {
+    console.log(playRound());
+  }
+
+  // logs scores
+  console.log("Human: ${humanScore}");
+  console.log("Computer: ${compScore}");
+
+  // checks who has higher score, logs winner.
+  if (humanScore > compScore) {
+    console.log("Human wins the game!");
+  } else {
+    console.log("Computer wins the game!");
+  }
+}
+
+playGame();
